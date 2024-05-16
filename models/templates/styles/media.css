@@ -1,0 +1,36 @@
+/* Desktop Viewport */
+
+@media screen and (min-width:1100px)
+{
+}
+
+/* __END__OF__DESKTOP__ */
+
+
+
+/* Tablet Viewport */
+
+@media screen and (max-width:1100px)
+{
+}
+
+/* __END__OF__Tablet__ */
+
+
+
+/* Smart Phone */
+
+@media screen and (max-width:600px)
+{
+}
+
+/* __END__OF__Smart_Phone__ */
+
+
+/* Smaller Screens */
+
+@media screen and (max-width:600px)
+{
+}
+
+/* __END__OF__Smaller_Screens__ */
