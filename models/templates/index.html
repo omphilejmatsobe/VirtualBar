@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<header>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="Live Streaming, Video Chat">
-        <meta name="description" content="Virtual Live Streaming application">
-        <meta name="author" content="https://omphile.me">
+	<head>
+		{% block head %}
+        	<meta charset="UTF-8">
+        	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        	<meta name="keywords" content="Live Streaming, Video Chat">
+        	<meta name="description" content="Virtual Live Streaming application">
+        	<meta name="author" content="https://omphile.me">
 
-        <title>{% block title %} VirtualBar {% endblock %}</title>
-	<link rel="stylesheet" href="styles/App.css">
-	<link rel="stylesheet" href="styles/media.css">
+		<title>{% block title %}Index{% endblock %}</title>
 
-	</header>
+		<link
+		rel="stylesheet" type="text/css" media="all" href="{{ url_for('static', filename='css/style.css') }}"
+		data-turbolinks-track="reload">
 
-	<body>
+		<link
+                rel="stylesheet" type="text/css" media="all" href="{{ url_for('static', filename='css/media.css') }}"
+                data-turbolinks-track="reload">
+		{% endblock %}
+	</head>
 
+	<body class="main">
+		<nav class="nav">
+			nav
+		</nav>
+		<main>
+			{% block body %}
+			{% endblock %}
+		</main>
+		<footer>
+			footer
+		</footer>
 	</body>
-
-	<script>
-	</script>
 </html>

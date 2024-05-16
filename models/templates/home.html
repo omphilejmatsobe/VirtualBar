@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-	<header>
+<!-- This inherits the template from index.html -->
 
-	</header>
-
-	<body>
-		This is the home Page
-	</body>
-
-	<script>
-	</script>
-</html>
+	{% extends "index.html" %}
+	{% block title %}Home{% endblock %}
+	{% block head %}
+  	{{ super() }}
+	{% endblock %}
+	{% block body%}
+		<div class="home">
+		</div>
+	{% endblock %}
