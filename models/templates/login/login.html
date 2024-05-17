@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                {% block head %}
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="keywords" content="Live Streaming, Video Chat">
+                <meta name="description" content="Virtual Live Streaming application">
+                <meta name="author" content="https://omphile.me">
+
+                <title>{% block title %}Index{% endblock %}</title>
+
+                <link
+                rel="stylesheet" type="text/css" media="all" href="{{ url_for('static', filename='css/style.css') }}"
+                data-turbolinks-track="reload">
+
+                <link
+                rel="stylesheet" type="text/css" media="all" href="{{ url_for('static', filename='css/media.css') }}"
+                data-turbolinks-track="reload">
+                {% endblock %}
+        </head>
+
+	<body>
+		<div class="log-form">
+			{% block main %}
+  			<h2>Login to your account</h2>
+ 			<form>
+    				<input type="text" title="username" placeholder="username" />
+    				<input type="password" title="username" placeholder="password" />
+    				<a class="forgot" href="#">Forgot password?</a>
+				<button type="submit" class="btn">Login</button>
+				<div><h3>Don't have an account?</h3><a class="sign up" href="{{ url_for('signup') }}">Sign up</a></div>
+  			</form>
+			{% endblock %}
+		</div><!--end log form -->
+	</body>
+</html>

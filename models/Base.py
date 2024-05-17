@@ -2,16 +2,17 @@
 
 """
 This is the base for the Application
-It will run all the classes of the 
+It will run all the classes of the
 application
 """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
-from wtforms.validator import DataRequired
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 app = Flask(__name__)
+
 
 class userRegistration(FlaskForm):
     """
@@ -29,7 +30,6 @@ class userRegistration(FlaskForm):
         """
         Function that checks for password validation
         """
-
         if len(newPasswrd) < 8:
             raise ValidationError(_('Password must have at least 8 characters'))
 
@@ -37,33 +37,39 @@ class userRegistration(FlaskForm):
         """
         function that checks if password is correct
         """
-
         if confirmPasswrd != newPasswrd:
             raise ValidationError(_('Passwords do not match'))
 
 
-
 @app.route("/")
 def base():
-    return ("home.html")
+    return render_template("home.html")
+
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    return render_template("login/login.html")
 
-"""
+
 @app.route("/signup")
-def create_new_account():
-   return render_template("createAccount.html")
-"""
+def signup():
+    return render_template("login/signup.html")
+
 
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
 
+
 @app.route("/main")
 def main():
     return render_template("main.html")
+
+
+@app.route("/session")
+def session():
+    return render_template("session/session.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
