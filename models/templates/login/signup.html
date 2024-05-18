@@ -3,11 +3,26 @@
 	{{ super() }}
 	{% endblock %}
 	{% block main %}
+		{{ form.csrf_token }}
+                {{ form.hidden_tag() }}
+
 		<h2>Create new account</h2>
-		<form>
-			<input type="text" title="username" placeholder="username" />
-			<input type="password" title="username" placeholder="password" />
-			<button type="submit" class="btn">Login</button>
-			<a class="forgot" href="#">Forgot password?</a>
-		</form>
+		<div>
+			{{ form.firstName.label }}
+			{{ form.firstName(class="form-control form-control-lg", id="name") }}
+
+			{{ form.Surname.label }}
+                        {{ form.Surname(class="form-control form-control-lg", id="Surname") }}
+
+			{{ form.email.label }}
+                        {{ form.email(class="form-control form-control-lg", id="email") }}
+
+			{{ form.newPasswrd.label }}
+                        {{ form.newPasswrd(class="form-control form-control-lg", id="passwrd") }}
+
+			{{ form.confirmPasswrd.label }}
+                        {{ form.confirmPasswrd(class="form-control form-control-lg", id="passwrd") }}
+
+			<div><h3>Already have an account?</h3><a class="sign up" href="{{ url_for('login') }}">login</a></div>
+		</div>
 	{% endblock %}

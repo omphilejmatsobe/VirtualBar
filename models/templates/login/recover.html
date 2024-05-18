@@ -1,0 +1,14 @@
+	{% extends "login/login.html" %}
+	{% block head %}
+	{{ super() }}
+	{% endblock %}
+	{% block main %}
+		<h2>Forgot Password</h2>
+		<h3>Enter your email and we'll send an email for password recovery</h3>
+		<form>
+			<input type="email" title="email" placeholder="email" />
+			<button type="submit" class="btn">
+				<a class="sign up" href="{{ url_for('login') }}">Submit</a>
+			</button>
+		</form>
+	{% endblock %}
