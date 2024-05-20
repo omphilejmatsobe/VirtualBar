@@ -36,10 +36,18 @@ class userRegistration(FlaskForm):
 
     def confirm_passwrd(form, field):
         """
-        function that checks if password is correct
+        function that checks if password is correcti
         """
         if confirmPasswrd != newPasswrd:
             raise ValidationError(_('Passwords do not match'))
+
+class loginPage(FlaskForm):
+    """
+    Class for user login
+    """
+
+    email = EmailField(label='Email', validators=[DataRequired()])
+    passwrd = PasswordField(label='Enter Password', validators=[DataRequired(), Length(min=5, max=20)])
 
 
 @app.route("/")
@@ -47,14 +55,17 @@ def base():
     return render_template("home.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def login():
-    return render_template("login/login.html")
+    form = loginPage()
+    return render_template("login/login.html", form=form)
 
 
-@app.route("/signup")
+@app.route("/signup", methods=["POST", "GET"])
 def signup():
     form = userRegistration()
+    if request.method == "POST" and form.validate_on_submit():
+
     return render_template("login/signup.html", form=form)
 
 

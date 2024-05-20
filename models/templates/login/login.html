@@ -25,14 +25,19 @@
 		<nav>VirtualBar</nav>
 		<div class="log-form">
 			{% block main %}
+			<form action="{{ url_for('login')}}" method="POST">
   			<h2>Login to your account</h2>
- 			<form>
-    				<input type="text" title="username" placeholder="username" />
-    				<input type="password" title="username" placeholder="password" />
+
+                        	{{ form.email.label }}
+                        	{{ form.email(class="form-control form-control-lg", id="email") }}
+
+				{{ form.passwrd.label }}
+				{{ form.passwrd(class="form-control form-control-lg", id="passwrd") }}
+				
     				<a class="forgot" href="{{ url_for('recover') }}">Forgot password?</a>
 				<button type="submit" class="btn">Login</button>
 				<div><h3>Don't have an account?</h3><a class="sign up" href="{{ url_for('signup') }}">Sign up</a></div>
-  			</form>
+			</form>
 			{% endblock %}
 		</div><!--end log form -->
 	</body>
