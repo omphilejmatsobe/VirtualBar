@@ -10,12 +10,12 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
-from flask_alchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy
+db = SQLAlchemy()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'testkey'
-app.config['SQL_DATABASE_URL'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db.init_app(app)
 
 
@@ -84,7 +84,7 @@ def signup():
         user = Register(
                 email=form.email.data,
                 firstName=form.firstName.data,
-                surname=form.Surname.data
+                surname=form.Surname.data,
                 password=form.newPasswrd.data
                 )
 
