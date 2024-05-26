@@ -77,11 +77,15 @@ def login():
 def signup():
     form = userRegistration()
     if request.method == "POST" and form.validate_on_submit():
-        user = signup(
-                email = form.email.data,
-                firstName = form.firstName.data,
-                surname = form.Surname.data
+        user = Register(
+                email=form.email.data,
+                firstName=form.firstName.data,
+                surname=form.Surname.data
+                password=form.newPasswrd.data
                 )
+
+        db.session.add(user)
+        db.session.commit()
 
     return render_template("login/signup.html", form=form)
 
