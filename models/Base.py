@@ -20,7 +20,12 @@ db.init_app(app)
 
 
 class registrationDB():
-
+    userId = db.Column(db.integer, primary_key=True)
+    email = db.Column(db.String(50), unique=True, nullable=True)
+    firstName = db.Column(db.String(50), unique=True, nullable=True)
+    lastName = db.Column(db.String(50), unique=True, nullable=True)
+    userName = db.Column(db.String(50), unique=True, nullable=True)
+    psswrd = db.Column(db.String(100), unique=True, nullable=True)
 
 class userRegistration(FlaskForm):
     """
