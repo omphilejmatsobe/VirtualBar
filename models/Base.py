@@ -6,7 +6,8 @@ It will run all the classes of the
 application
 """
 
-from flask import Flask, render_template, redirect, request, url_for
+import flask
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
@@ -89,7 +90,9 @@ def signup():
                 )
 
         db.session.add(user_login)
-        db.session.commit()
+        db.session.commit(user_login)
+        flash('Account created succesfully.', 'success')
+        return redirect(url_for('login'))
 
     return render_template("login/signup.html", form=form)
 
