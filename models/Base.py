@@ -20,12 +20,12 @@ db.init_app(app)
 
 
 class registrationDB():
-    userId = db.Column(db.integer, primary_key=True)
-    email = db.Column(db.String(50), unique=True, nullable=True)
-    firstName = db.Column(db.String(50), unique=True, nullable=True)
-    lastName = db.Column(db.String(50), unique=True, nullable=True)
-    userName = db.Column(db.String(50), unique=True, nullable=True)
-    psswrd = db.Column(db.String(100), unique=True, nullable=True)
+    userId = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    firstName = db.Column(db.String(50), unique=True, nullable=False)
+    lastName = db.Column(db.String(50), unique=True, nullable=False)
+    userName = db.Column(db.String(50), unique=True, nullable=False)
+    psswrd = db.Column(db.String(100), unique=True, nullable=False)
 
 
 class userRegistration(FlaskForm):
@@ -81,14 +81,14 @@ def login():
 def signup():
     form = userRegistration()
     if request.method == "POST" and form.validate_on_submit():
-        user = Register(
+        user_login = Register(
                 email=form.email.data,
                 firstName=form.firstName.data,
                 surname=form.Surname.data,
                 password=form.newPasswrd.data
                 )
 
-        db.session.add(user)
+        db.session.add(user_login)
         db.session.commit()
 
     return render_template("login/signup.html", form=form)
