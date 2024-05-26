@@ -6,7 +6,7 @@ It will run all the classes of the
 application
 """
 
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, redirect, request, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
@@ -27,6 +27,7 @@ class registrationDB():
     userName = db.Column(db.String(50), unique=True, nullable=True)
     psswrd = db.Column(db.String(100), unique=True, nullable=True)
 
+
 class userRegistration(FlaskForm):
     """
     Class for the user registration form
@@ -35,9 +36,12 @@ class userRegistration(FlaskForm):
     email = EmailField(label='Email', validators=[DataRequired()])
     firstName = StringField(label='First Name', validators=[DataRequired()])
     Surname = StringField(label='Last Name', validators=[DataRequired()])
-    Username = StringField(label='Username', validators=[DataRequired(), Length(min=5, max=20)])
-    newPasswrd = PasswordField(label='New Password', validators=[DataRequired(), Length(min=5, max=20)])
-    confirmPasswrd = PasswordField(label='Confirm Password', validators=[DataRequired(), Length(min=5, max=20)])
+    Username = StringField(label='Username', validators=[DataRequired(),
+                           Length(min=5, max=20)])
+    newPasswrd = PasswordField(label='New Password', validators=[DataRequired(),
+                           Length(min=5, max=20)])
+    confirmPasswrd = PasswordField(label='Confirm Password', validators=[DataRequired(),
+                           Length(min=5, max=20)])
 
     def passwrd_validator(form, field):
         """
@@ -64,7 +68,7 @@ class loginPage(FlaskForm):
 
 @app.route("/")
 def base():
-    return render_template("home.html")
+    return rendirect(url_for('login'))
 
 
 @app.route("/login", methods=["POST", "GET"])
