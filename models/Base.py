@@ -39,7 +39,7 @@ class userRegistration(FlaskForm):
     email = EmailField(label='Email', validators=[DataRequired()])
     firstName = StringField(label='First Name', validators=[DataRequired()])
     lastName = StringField(label='Last Name', validators=[DataRequired()])
-    Username = StringField(label='Username', validators=[DataRequired(),
+    userName = StringField(label='Username', validators=[DataRequired(),
                            Length(min=5, max=20)])
     newPasswrd = PasswordField(label='New Password', validators=[DataRequired(),
                            Length(min=5, max=20)])
@@ -89,6 +89,7 @@ def signup():
                 email=form.email.data,
                 firstName=form.firstName.data,
                 lastName=form.lastName.data,
+                userName=form.userName.data,
                 password=form.newPasswrd.data
                 )
 
