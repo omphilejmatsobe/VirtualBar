@@ -85,7 +85,7 @@ def login():
 def signup():
     form = userRegistration()
     if request.method == "POST" and form.validate_on_submit():
-        user_reg = Register(
+        user_reg = newUserDB(
                 email=form.email.data,
                 firstName=form.firstName.data,
                 lastName=form.lastName.data,
