@@ -20,13 +20,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db.init_app(app)
 
 
-class registrationDB():
-    userId = db.Column(db.Integer, primary_key=True)
+class newUserDB(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True, nullable=False)
     firstName = db.Column(db.String(50), unique=True, nullable=False)
     lastName = db.Column(db.String(50), unique=True, nullable=False)
     userName = db.Column(db.String(50), unique=True, nullable=False)
-    psswrd = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(100), unique=True, nullable=False)
 
 
 class userRegistration(FlaskForm):
