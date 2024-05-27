@@ -22,7 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{ DATABASE }'
 db.init_app(app)
 
 
-class newUserDB(db.Model):
+class NewUserDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
     firstName = db.Column(db.String(50), nullable=False)
@@ -31,7 +31,7 @@ class newUserDB(db.Model):
     password = db.Column(db.String(100), unique=True, nullable=False)
 
 
-class userRegistration(FlaskForm):
+class UserRegistration(FlaskForm):
     """
     Class for the user registration form
     """
@@ -61,7 +61,7 @@ class userRegistration(FlaskForm):
             raise ValidationError(_('Passwords do not match'))
 
 
-class loginPage(FlaskForm):
+class LoginPage(FlaskForm):
     """
     Class for user login
     """
@@ -83,9 +83,9 @@ def login():
 
 @app.route("/signup", methods=["POST", "GET"])
 def signup():
-    form = userRegistration()
+    form = UserRegistration()
     if request.method == "POST" and form.validate_on_submit():
-        user_reg = newUserDB(
+        user_reg = NewUserDB(
                 email=form.email.data,
                 firstName=form.firstName.data,
                 lastName=form.lastName.data,
