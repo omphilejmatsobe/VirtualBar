@@ -6,6 +6,7 @@ It will run all the classes of the
 application
 """
 
+
 import flask
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_wtf import FlaskForm
@@ -16,7 +17,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'testkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VirtualBar.db'
 db.init_app(app)
 
 
@@ -58,6 +59,7 @@ class userRegistration(FlaskForm):
         if confirmPasswrd != newPasswrd:
             raise ValidationError(_('Passwords do not match'))
 
+
 class loginPage(FlaskForm):
     """
     Class for user login
@@ -90,7 +92,7 @@ def signup():
                 )
 
         db.session.add(user_login)
-        db.session.commit(user_login)
+        db.session.commit()
         flash('Account created succesfully.', 'success')
         return redirect(url_for('login'))
 

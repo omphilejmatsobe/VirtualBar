@@ -25,7 +25,7 @@
 				{{ form.confirmPasswrd.label }}
                        		{{ form.confirmPasswrd(class="form-control form-control-lg", id="passwrd") }}
 				<button type="submit">Sign up</button>
-				<div><h3>Already have an account?</h3><a class="sign up" href="{{ url_for('login') }}">login</a></div>
+				<div><h3>Already have an account?</h3><a class="sign up" href="{{ url_for(login)}}">login</a></div>
 			</div>
 		</form>
 	{% endblock %}
