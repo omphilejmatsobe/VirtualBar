@@ -15,17 +15,18 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+DATABASE = "Users.db"
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'testkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VirtualBar.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{ DATABASE }'
 db.init_app(app)
 
 
 class newUserDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(50), unique=True, nullable=False)
-    firstName = db.Column(db.String(50), unique=True, nullable=False)
-    lastName = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    firstName = db.Column(db.String(50), nullable=False)
+    lastName = db.Column(db.String(50),  nullable=False)
     userName = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), unique=True, nullable=False)
 
@@ -84,16 +85,16 @@ def login():
 def signup():
     form = userRegistration()
     if request.method == "POST" and form.validate_on_submit():
-        user_login = Register(
+        user_reg = Register(
                 email=form.email.data,
                 firstName=form.firstName.data,
                 surname=form.Surname.data,
                 password=form.newPasswrd.data
                 )
 
-        db.session.add(user_login)
+        db.session.add(user_reg)
         db.session.commit()
-        flash('Account created succesfully.', 'success')
+        flash("Account created succesfully.", category="success")
         return redirect(url_for('login'))
 
     return render_template("login/signup.html", form=form)
