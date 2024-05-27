@@ -38,7 +38,7 @@ class userRegistration(FlaskForm):
 
     email = EmailField(label='Email', validators=[DataRequired()])
     firstName = StringField(label='First Name', validators=[DataRequired()])
-    Surname = StringField(label='Last Name', validators=[DataRequired()])
+    lastName = StringField(label='Last Name', validators=[DataRequired()])
     Username = StringField(label='Username', validators=[DataRequired(),
                            Length(min=5, max=20)])
     newPasswrd = PasswordField(label='New Password', validators=[DataRequired(),
@@ -67,7 +67,7 @@ class loginPage(FlaskForm):
     """
 
     email = EmailField(label='Email', validators=[DataRequired()])
-    passwrd = PasswordField(label='Enter Password', validators=[DataRequired(), Length(min=5, max=20)])
+    password = PasswordField(label='Enter Password', validators=[DataRequired(), Length(min=5, max=20)])
 
 
 @app.route("/")
@@ -88,7 +88,7 @@ def signup():
         user_reg = Register(
                 email=form.email.data,
                 firstName=form.firstName.data,
-                surname=form.Surname.data,
+                lastName=form.lastName.data,
                 password=form.newPasswrd.data
                 )
 
