@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(name)
+app = Flask(__name__)
 
-@app.rout('/')
+@app.route('/')
 def home():
     return render_template('index.html')
 
