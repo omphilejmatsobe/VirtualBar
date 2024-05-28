@@ -13,12 +13,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 
 db = SQLAlchemy()
-DATABASE = "Users.db"
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'testkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{ DATABASE }'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///User.db'
 db.init_app(app)
 
 
@@ -30,6 +30,10 @@ class NewUserDB(db.Model):
     userName = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), unique=True, nullable=False)
 
+    bio = db.Column(db.String(500))
+
+with app.app_context():
+    db.create_all()
 
 class UserRegistration(FlaskForm):
     """
@@ -77,7 +81,7 @@ def base():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    form = loginPage()
+    form = LoginPage()
     return render_template("login/login.html", form=form)
 
 
@@ -92,11 +96,10 @@ def signup():
                 userName=form.userName.data,
                 password=form.newPasswrd.data
                 )
-
         db.session.add(user_reg)
         db.session.commit()
         flash("Account created succesfully.", category="success")
-        return redirect(url_for('login'))
+        return redirect(url_for("login"))
 
     return render_template("login/signup.html", form=form)
 
