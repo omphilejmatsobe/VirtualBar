@@ -41,7 +41,7 @@ def login():
 
         if user and check_password_hash(user.password, password):
             session['user id'] = user.id
-            return redirect('/')
+            return redirect('/session')
         else:
             return redirect('/login')
 
@@ -55,12 +55,25 @@ def signup():
 
 @app.route('/recover', methods=['POST'])
 def passwordRecovery():
+    if request.method == 'POST':
+        email = request.form['email']
+
+        user = UserDB.query.filter_by(email=email).first()
+        if user:
+            """
+            send email for recovery
+            """
+            return redirect('/login')
+        else:
+            """
+            flash that email does not exist and return to login
+            """
+            return redirect('/login')
     return render_templater('login/recover.html')
 
 
 @app.route('/session', methods=['GET', 'POST'])
 def session():
-
     if 'user_id' not in session:
         return redirect('/login')
 
