@@ -6,3 +6,6 @@ app = Flask(name)
 @app.rout('/')
 def home():
     return render_template('index.html')
+
+if __name__ == '__main__':
+    appi.run(debug==True)
