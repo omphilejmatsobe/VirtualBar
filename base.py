@@ -9,18 +9,22 @@ instructions.
 
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SECRET_KEY'] = 'super user'
 db = SQLAlchemy(app)
 
+
 class UserDB(db.Model):
     id = sb.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=False, nullable=False )
+    name = db.Column(db.String(100), unique=False, nullable=False)
     userName = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Coilumn(db.Text, unique=True, nullable=False)
+
 
 @app.route('/')
 def home():
@@ -29,6 +33,18 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        user = UserDB.query.filter_by(email=email, password=password).first()
+
+        if user and check_password_hash(user.password, password):
+            session['user id'] = user.id
+            return redirect('/')
+        else:
+            return redirect('/login')
+
     return render_template('login/login.html')
 
 
@@ -44,6 +60,10 @@ def passwordRecovery():
 
 @app.route('/session', methods=['GET', 'POST'])
 def session():
+
+    if 'user_id' not in session:
+        return redirect('/login')
+
     return render_template('session/session.html')
 
 
