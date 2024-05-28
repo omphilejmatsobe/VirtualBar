@@ -75,7 +75,7 @@ def passwordRecovery():
 @app.route('/session', methods=['GET', 'POST'])
 def session():
     if 'user_id' not in session:
-        return render_template('session/session.html', logged_in=False)
+        return redirect('/')
 
     return render_template('session/session.html', logged_in=True)
 
