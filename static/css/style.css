@@ -56,7 +56,17 @@ button:hover{
     background: rgb(2, 116, 255);
 }
 
+.description{
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
 
+.description h1, .description h3{
+    color: white;
+}
 
 footer{
     height: 300px;
