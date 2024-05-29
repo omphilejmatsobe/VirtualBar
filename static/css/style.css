@@ -100,12 +100,11 @@ button:hover{
     margin: auto;
     width: fit-content;
     height: fit-content;
-    padding: 50px 20px;
     flex-direction: column;
 }
 
 .login form{
-    width: 100%;
+    width: fit-content;
     height: 100%;
     border-radius: 50px;
     display: flex;
