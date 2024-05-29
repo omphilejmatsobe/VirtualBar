@@ -20,11 +20,11 @@ db = SQLAlchemy(app)
 
 
 class UserDB(db.Model):
-    id = sb.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=False, nullable=False)
     userName = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Coilumn(db.Text, unique=True, nullable=False)
+    password = db.Column(db.Text, unique=True, nullable=False)
 
 
 @app.route('/')
