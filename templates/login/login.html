@@ -10,12 +10,8 @@
 <body>	
 	<div class="login">
 		<nav>
-			<div class="logo">
-				<h1>VirtualBar</h1>
-			</div>
-			<div class="login-buttons">
-				<a href="{{ url_for('login') }}"><button>Login</button></a>
-				<a href="{{ url_for('signup') }}"><button>Signup</button></a>
+			<div href="{{ url_for('home') }}" class="logo">
+				<h1><a >VirtualBar</a></h1>
 			</div>
 		</nav>
 		<div class="wrapper">
