@@ -9,6 +9,15 @@
 </head>
 <body>	
 	<div class="login">
+		<nav>
+			<div class="logo">
+				<h1>VirtualBar</h1>
+			</div>
+			<div class="login-buttons">
+				<a href="{{ url_for('login') }}"><button>Login</button></a>
+				<a href="{{ url_for('signup') }}"><button>Signup</button></a>
+			</div>
+		</nav>
 		<div class="wrapper">
 			{% block main %}
 			<form action="/login" method="POST">
