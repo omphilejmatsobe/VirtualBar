@@ -8,14 +8,16 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
 </head>
 <body>
-	<nav>
-		<div class="logo"></div>
-		<div class="login-buttons">
-			<button><a href="{{ url_for('login') }}"></a></button>
-			<button><a href="{{ url_for('signup') }}"></a></button>
-		</div>
-	</nav>
 	<div class="hero">
+		<nav>
+			<div class="logo">
+				<h1>VirtualBar</h1>
+			</div>
+			<div class="login-buttons">
+				<button><a href="{{ url_for('login') }}">Login</a></button>
+				<button><a href="{{ url_for('signup') }}">Signup</a></button>
+			</div>
+		</nav>
 		<div class="landing">
 			<img>
 		</div>
@@ -23,11 +25,16 @@
 			<div>
 			</div>
 			<div>
-
 			</div>
 		</div>
 	</div>
 	<footer>
+		<div class="copyrite">
+			<h1>© 2024 VirtualBar, all rights reserved</h1>
+		</div>
+		<div class="footer-links">
+
+		</div>
 	</footer>
 </body>
 </html>
