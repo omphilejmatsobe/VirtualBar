@@ -75,7 +75,8 @@ button:hover{
 .description h3{
     width: 800px;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 23px;
+    text-align: center;
     color: rgb(192, 192, 192);
 }
 
