@@ -14,6 +14,10 @@ nav{
     flex-direction: row;
 }
 
+.logo{
+    margin-right: auto;
+    margin-left: 100px;
+}
 .logo h1{
     color: white;
     font-size: 20px;
