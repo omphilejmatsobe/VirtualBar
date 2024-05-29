@@ -67,6 +67,9 @@ def signup():
             db.session.add(newUser)
             db.commit()
 
+            flash("Account created")
+            redirect( url_for('login') )
+
     return render_template('login/signup.html')
 
 
@@ -85,14 +88,14 @@ def passwordRecovery():
             """
             flash that email does not exist and return to login
             """
-            return redirect('/login')
+            return redirect(url_for('login'))
     return render_templater('login/recover.html')
 
 
 @app.route('/session', methods=['GET', 'POST'])
 def session():
     if 'user_id' not in session:
-        return redirect('/')
+        return redirect(url_for('home'))
 
     return render_template('session/session.html', logged_in=True)
 
