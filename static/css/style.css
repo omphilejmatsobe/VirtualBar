@@ -124,6 +124,11 @@ button:hover{
     padding: 50px;
 }
 
+.login form input{
+    background: none;
+    height: 20px;
+}
+
 .data-input{
     display: flex;
     flex-direction: column;
