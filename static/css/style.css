@@ -111,6 +111,8 @@ button:hover{
     flex-direction: column;
     background: rgb(68, 68, 68);
     color: white;
+    align-content: center;
+    justify-content: center;
     padding: 100px 50px;
 }
 
