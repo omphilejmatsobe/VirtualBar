@@ -113,6 +113,12 @@ button:hover{
     color: white;
 }
 
+.data-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
 footer{
     height: 300px;
     width: 100%;
