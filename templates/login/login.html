@@ -8,47 +8,45 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
 </head>
 <body>	
-	<div>
-		<div>
-			<div>
-				{% block main %}
-				<form action="/login" method="POST">
+	<div class="login">
+		<div class="wrapper">
+			{% block main %}
+			<form action="/login" method="POST">
+				<span>
+					Login
+				</span>
+				<div data-validate = "Username is required">
+					<span>Email</span>
+					<input type="email" name="email" placeholder="Type your username">
+					<span data-symbol="&#xf206;"></span>
+				</div>
+				<div data-validate="Password is required">
+					<span>Password</span>
+					<input type="password" name="password" placeholder="Type your password">
+					<span data-symbol="&#xf190;"></span>
+				</div>
+				<div>
+					<a href="{{ url_for('passwordRecovery') }}">
+						Forgot password?
+					</a>
+				</div>
+				<div>
+					<div>
+						<button type="submit">
+							Login
+						</button>
+					</div>
+				</div>
+				<div>
 					<span>
-						Login
+						Don't have an account?
 					</span>
-					<div data-validate = "Username is required">
-						<span>Email</span>
-						<input type="email" name="email" placeholder="Type your username">
-						<span data-symbol="&#xf206;"></span>
-					</div>
-					<div data-validate="Password is required">
-						<span>Password</span>
-						<input type="password" name="password" placeholder="Type your password">
-						<span data-symbol="&#xf190;"></span>
-					</div>
-					<div>
-						<a href="{{ url_for('passwordRecovery') }}">
-							Forgot password?
-						</a>
-					</div>
-					<div>
-						<div>
-							<button type="submit">
-								Login
-							</button>
-						</div>
-					</div>
-					<div>
-						<span>
-							Don't have an account?
-						</span>
-						<a href="{{ url_for('signup') }}">
-							Sign Up
-						</a>
-					</div>
-				</form>
-				{% endblock %}
-			</div>
+					<a href="{{ url_for('signup') }}">
+						Sign Up
+					</a>
+				</div>
+			</form>
+			{% endblock %}
 		</div>
 	</div>
 	<div></div>
