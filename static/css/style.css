@@ -72,6 +72,10 @@ button:hover{
     color: white;
 }
 
+.description h1{
+    font-size: 40;
+}
+
 .description h3{
     width: 800px;
     font-weight: 400;
