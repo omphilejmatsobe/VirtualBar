@@ -20,6 +20,7 @@ button{
     background: blue;
     transition: 0.5s ease;
     border-radius: 50px;
+    border: none;
 }
 
 button:hover{
