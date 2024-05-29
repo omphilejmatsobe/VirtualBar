@@ -36,12 +36,14 @@ button{
     border: none;
     cursor: pointer;
     margin: 10px;
-}
-
-button a{
-    text-decoration: none;
     color: white;
     font-size: 15px;
+}
+
+nav a{
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
 }
 
 button:hover{
