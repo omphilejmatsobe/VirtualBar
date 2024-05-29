@@ -98,7 +98,7 @@ button:hover{
 .login .wrapper{
     display: flex;
     margin: auto;
-    width: 500px;
+    width: fit-content;
     height: fit-content;
     padding: 50px 20px;
     flex-direction: column;
@@ -111,6 +111,12 @@ button:hover{
     flex-direction: column;
     background: rgb(68, 68, 68);
     color: white;
+}
+
+.data-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
 footer{
