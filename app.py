@@ -91,6 +91,11 @@ def passwordRecovery():
             return redirect(url_for('login'))
     return render_templater('login/recover.html')
 
+@app.route('/dashboad', methods=['GET', 'POST'])
+def dashboard():
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
+    return render_template('session/dashboard.html', logged_in=True)
 
 @app.route('/session', methods=['GET', 'POST'])
 def session():
@@ -99,6 +104,20 @@ def session():
 
     return render_template('session/session.html', logged_in=True)
 
+
+@app.route('/join')
+def join():
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
+    return render_template('session/join.html', logged_in=True)
+
+@app.route('/logout')
+def logout():
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
+    return render_template('session/logout.html', logged_in=True)
+
+@app.route('/')
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
