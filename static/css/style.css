@@ -14,14 +14,22 @@ nav{
     flex-direction: row;
 }
 
+.login-buttons{
+    width: fit-content;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
 button{
-    width: 150px;
+    width: 120px;
     height: 40px;
     background: blue;
     transition: 0.5s ease;
     border-radius: 40px;
     border: none;
     cursor: pointer;
+    margin: 10px;
 }
 
 button a{
