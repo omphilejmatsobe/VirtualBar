@@ -101,6 +101,7 @@ button:hover{
     width: 500px;
     height: fit-content;
     padding: 50px 20px;
+    flex-direction: column;
 }
 
 
