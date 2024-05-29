@@ -59,7 +59,7 @@ button:hover{
 
 .description{
     margin: auto;
-    margin-top: 200px;
+    margin-top: 150px;
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -70,6 +70,12 @@ button:hover{
 
 .description h1, .description h3{
     color: white;
+}
+
+.description h3{
+    font-weight: 400;
+    font-size: 12px;
+    color: rgb(192, 192, 192);
 }
 
 footer{
