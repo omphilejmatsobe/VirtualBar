@@ -41,9 +41,9 @@ def login():
 
         if user and check_password_hash(user.password, password):
             session['user id'] = user.id
-            return redirect('/session')
+            return redirect(url_for('dashboard'))
         else:
-            return redirect('/login')
+            return redirect(url_for('login'))
     return render_template('login/login.html')
 
 
@@ -65,7 +65,7 @@ def signup():
             db.session.add(newUser)
             db.session.commit()
 
-            redirect( url_for('login') )
+            return redirect('/login')
 
     return render_template('login/signup.html')
 
@@ -89,34 +89,27 @@ def passwordRecovery():
     return render_templater('login/recover.html')
 
 
-@app.route('/dashboad', methods=['GET', 'POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if 'user_id' not in session:
-        return redirect(url_for('home'))
+
     user = UserDB.query.get(session['user_id'])
     return render_template('session/dashboard.html', logged_in=True, curr_user=user)
 
 
-@app.route('/session', methods=['GET', 'POST'])
+@app.route('/session')
 def session():
-    if 'user_id' not in session:
-        return redirect(url_for('home'))
-    user = UserDB.query.get(session['user_id'])
-    return render_template('session/session.html', logged_in=True, curr_user=user)
+    return render_template('session/session.html')
 
 
 @app.route('/join')
 def join():
-    if 'user_id' not in session:
-        return redirect(url_for('home'))
-    user = UserDB.query.get(session['user_id'])
-    return render_template('session/join.html', logged_in=True, curr_user=user)
+    return render_template('session/join.html')
 
 
 @app.route('/logout')
 def logout():
     if 'user_id' not in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     session.pop('user_id', none)
     return redirect( url_for(home))
 
@@ -124,7 +117,7 @@ def logout():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     if 'user_id' not in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     user = UserDB.query.get(session['user_id'])
     return render_template('session/logout.html', logged_in=True, curr_user=user)
 
