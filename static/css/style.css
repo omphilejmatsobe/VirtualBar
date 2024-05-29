@@ -19,6 +19,7 @@ nav{
     margin-left: auto;
     display: flex;
     flex-direction: row;
+    right: 100px;
 }
 
 button{
