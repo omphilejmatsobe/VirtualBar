@@ -7,9 +7,27 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
 </head>
-<body>	
-	<div>
-		<h1>Home Page</h1>
-	<div>
+<body>
+	<nav>
+		<div class="logo"></div>
+		<div class="login-buttons">
+			<button><a href="{{ url_for('login') }}"></a></button>
+			<button><a href="{{ url_for('signup') }}"></a></button>
+		</div>
+	</nav>
+	<div class="hero">
+		<div class="landing">
+			<img>
+		</div>
+		<div class="About">
+			<div>
+			</div>
+			<div>
+
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
 </body>
 </html>
