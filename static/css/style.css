@@ -98,7 +98,7 @@ button:hover{
 .login .wrapper{
     display: flex;
     margin: auto;
-    width: 500px;
+    width: fit-content;
     height: fit-content;
     padding: 50px 20px;
     flex-direction: column;
