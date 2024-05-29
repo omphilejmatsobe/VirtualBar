@@ -1,13 +1,13 @@
 {% extends "login/login.html" %}
 {% block main%}
-	<form>
+	<form action="/signup" method="POST">
 		<span>
 			Login
 		</span>
 
                 <div data-validate = "Username is required">
                         <span>Name</span>
-                        <input type="text" name="username" placeholder="Type your name">
+                        <input type="text" name="name" placeholder="Type your name">
                         <span data-symbol="&#xf206;"></span>
                 </div>
 
@@ -24,7 +24,7 @@
 		</div>
 		<div data-validate="Password is required">
 			<span>Password</span>
-			<input type="password" name="pass" placeholder="Type your password">
+			<input type="password" name="password" placeholder="Type your password">
 			<span data-symbol="&#xf190;"></span>
 		</div>
 		<div>

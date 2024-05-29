@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-
 """
 This is the code base for VirtualBar.
 This module runs most of the program
 and operates the important classes and
 instructions.
 """
+
 
 from flask import Flask, render_template, request, redirect, session
 from flask import url_for, flash
@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 class UserDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=False, nullable=False)
-    userName = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.Text, unique=True, nullable=False)
 
@@ -37,7 +37,6 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-
         user = UserDB.query.filter_by(email=email, password=password).first()
 
         if user and check_password_hash(user.password, password):
@@ -45,7 +44,6 @@ def login():
             return redirect('/session')
         else:
             return redirect('/login')
-
     return render_template('login/login.html')
 
 
@@ -65,9 +63,8 @@ def signup():
             password = generate_password_hash(password)
             newUser = UserDB(name=name, username=username, email=email, password=password)
             db.session.add(newUser)
-            db.commit()
+            db.session.commit()
 
-            flash("Account created")
             redirect( url_for('login') )
 
     return render_template('login/signup.html')
@@ -91,12 +88,14 @@ def passwordRecovery():
             return redirect(url_for('login'))
     return render_templater('login/recover.html')
 
+
 @app.route('/dashboad', methods=['GET', 'POST'])
 def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('home'))
     user = UserDB.query.get(session['user_id'])
     return render_template('session/dashboard.html', logged_in=True, curr_user=user)
+
 
 @app.route('/session', methods=['GET', 'POST'])
 def session():
