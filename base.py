@@ -57,6 +57,16 @@ def signup():
         email = request.form['email']
         password = request.form['password']
 
+        user = UserDB.query.filter((UserDB.name == username)|(UserDB.email == email)).first()
+
+        if user:
+            flash("Account already exists", "danger")
+        else:
+            password = generate_password_hash(password)
+            newUser = UserDB(name=name, username=username, email=email, password=password)
+            db.session.add(newUser)
+            db.commit()
+
     return render_template('login/signup.html')
 
 
