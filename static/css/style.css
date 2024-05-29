@@ -16,11 +16,18 @@ nav{
 
 button{
     width: 150px;
-    height: 50px;
+    height: 40px;
     background: blue;
     transition: 0.5s ease;
-    border-radius: 50px;
+    border-radius: 40px;
     border: none;
+    cursor: pointer;
+}
+
+button a{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
 }
 
 button:hover{
