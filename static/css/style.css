@@ -127,6 +127,7 @@ button:hover{
 .login form input{
     background: none;
     height: 20px;
+    color: white;
 }
 
 .data-input{
