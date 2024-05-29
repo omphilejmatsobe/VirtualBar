@@ -4,52 +4,12 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{{ url_for('static'), filename='css/style.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static'), filename='css/media.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
 </head>
 <body>	
 	<div>
-		<div>
-			<div>
-				<form>
-					<span>
-						Login
-					</span>
-					<div data-validate = "Username is required">
-						<span>Username</span>
-						<input type="text" name="username" placeholder="Type your username">
-						<span data-symbol="&#xf206;"></span>
-					</div>
-					<div data-validate="Password is required">
-						<span>Password</span>
-						<input type="password" name="pass" placeholder="Type your password">
-						<span data-symbol="&#xf190;"></span>
-					</div>
-					<div>
-						<a href="#">
-							Forgot password?
-						</a>
-					</div>
-					<div>
-						<div>
-							<div></div>
-							<button>
-								Login
-							</button>
-						</div>
-					</div>
-					<div>
-						<span>
-							Don't have an account?
-						</span>
-						<a href="{{ url_for(signup) }}">
-							Sign Up
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div></div>
+		<h1>Home Page</h1>
+	<div>
 </body>
 </html>

@@ -1,12 +1,25 @@
-{% extends "login.html"%}
+{% extends "login/login.html" %}
 {% block main%}
 	<form>
 		<span>
 			Login
 		</span>
+
+                <div data-validate = "Username is required">
+                        <span>Name</span>
+                        <input type="text" name="username" placeholder="Type your name">
+                        <span data-symbol="&#xf206;"></span>
+                </div>
+
+                <div data-validate = "Username is required">
+                        <span>Username</span>
+                        <input type="text" name="username" placeholder="Type your username">
+                        <span data-symbol="&#xf206;"></span>
+                </div>
+
 		<div data-validate = "Username is required">
-			<span>Username</span>
-			<input type="text" name="username" placeholder="Type your username">
+			<span>Email</span>
+			<input type="email" name="email" placeholder="Enter your email">
 			<span data-symbol="&#xf206;"></span>
 		</div>
 		<div data-validate="Password is required">
@@ -15,23 +28,18 @@
 			<span data-symbol="&#xf190;"></span>
 		</div>
 		<div>
-			<a href="#">
-				Forgot password?
-			</a>
-		</div>
-		<div>
 			<div>
 				<div></div>
 				<button>
-					Login
+					Sign Up
 				</button>
 			</div>
 		</div>
 		<div>
 			<span>
-				Don't have an account?
+				Already have an account?
 			</span>
-			<a href="{{ url_for(signup) }}">
+			<a href="{{ url_for('login') }}">
 				Sign Up
 			</a>
 		</div>

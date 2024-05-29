@@ -95,33 +95,39 @@ def passwordRecovery():
 def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('home'))
-    return render_template('session/dashboard.html', logged_in=True)
+    user = UserDB.query.get(session['user_id'])
+    return render_template('session/dashboard.html', logged_in=True, curr_user=user)
 
 @app.route('/session', methods=['GET', 'POST'])
 def session():
     if 'user_id' not in session:
         return redirect(url_for('home'))
-
-    return render_template('session/session.html', logged_in=True)
+    user = UserDB.query.get(session['user_id'])
+    return render_template('session/session.html', logged_in=True, curr_user=user)
 
 
 @app.route('/join')
 def join():
     if 'user_id' not in session:
         return redirect(url_for('home'))
-    return render_template('session/join.html', logged_in=True)
+    user = UserDB.query.get(session['user_id'])
+    return render_template('session/join.html', logged_in=True, curr_user=user)
+
 
 @app.route('/logout')
 def logout():
     if 'user_id' not in session:
         return redirect(url_for('home'))
-    return render_template('session/logout.html', logged_in=True)
+    session.pop('user_id', none)
+    return redirect( url_for(home))
 
-@app.route('/')
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    return render_template('profile/profile.html')
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
+    user = UserDB.query.get(session['user_id'])
+    return render_template('session/logout.html', logged_in=True, curr_user=user)
 
 
 if __name__ == '__main__':
