@@ -114,6 +114,11 @@ def dashboard():
     """
 
     user = UserDB.query.get(session['user_id'])
+
+    if !user:
+        return redirect(url_for('login'))
+
+
     return render_template('session/dashboard.html', logged_in=True, curr_user=user)
 
 
@@ -122,27 +127,35 @@ def session():
     """
     This displays the session page
     """
+
+    user = UserDB.query.get(session['user_id'])
+    if !user:
+        return redirect(url_for('login'))
+
     return render_template('session/session.html')
 
 
 @app.route('/join')
 def join():
+    user = UserDB.query.get(session['user_id'])
+    if !user:
+        return redirect(url_for('login'))
+
     return render_template('session/join.html')
 
 
 @app.route('/logout')
 def logout():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-    session.pop('user_id', none)
-    return redirect( url_for(home))
+    return redirect( url_for('login'))
 
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
+
     user = UserDB.query.get(session['user_id'])
+    if !user:
+        return redirect(url_for('login'))
+
     return render_template('session/logout.html', logged_in=True, curr_user=user)
 
 
