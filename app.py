@@ -20,6 +20,9 @@ db = SQLAlchemy(app)
 
 
 class UserDB(db.Model):
+    """
+    This initializes the database table and columns
+    """
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=False, nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
@@ -34,6 +37,12 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    This controls all the login features
+    """
+
+    message = ""
+
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -43,12 +52,17 @@ def login():
             session['user id'] = user.id
             return redirect(url_for('dashboard'))
         else:
-            return redirect(url_for('login'))
-    return render_template('login/login.html')
+            message = "Account does't exist."
+    return render_template('login/login.html', )
 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """
+    This controls all the signup features
+    """
+
+    message = ""
     if request.method == 'POST':
         name = request.form['name']
         username = request.form['username']
@@ -58,7 +72,7 @@ def signup():
         user = UserDB.query.filter((UserDB.name == username)|(UserDB.email == email)).first()
 
         if user:
-            flash("Account already exists", "danger")
+            message = "Account Exists."
         else:
             password = generate_password_hash(password)
             newUser = UserDB(name=name, username=username, email=email, password=password)
@@ -67,11 +81,15 @@ def signup():
 
             return redirect('/login')
 
-    return render_template('login/signup.html')
+    return render_template('login/signup.html', message=message)
 
 
 @app.route('/recover', methods=['POST'])
 def passwordRecovery():
+    """
+    This controls all the account recovery features
+    """
+
     if request.method == 'POST':
         email = request.form['email']
 
@@ -91,6 +109,9 @@ def passwordRecovery():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+    """
+    This controls dashboards features
+    """
 
     user = UserDB.query.get(session['user_id'])
     return render_template('session/dashboard.html', logged_in=True, curr_user=user)
@@ -98,6 +119,9 @@ def dashboard():
 
 @app.route('/session')
 def session():
+    """
+    This displays the session page
+    """
     return render_template('session/session.html')
 
 
