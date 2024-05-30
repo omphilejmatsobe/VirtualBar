@@ -46,10 +46,10 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = UserDB.query.filter_by((UserDB.username == username)|(UserDB.email == email), password=password).first()
+        user = UserDB.query.filter_by(UserDB.email == email, password=password).first()
 
         if user and check_password_hash(user.password, password):
-            session['user id'] = user.id
+            session['user_id'] = user.id
             return redirect(url_for('dashboard'))
         else:
             message = "Account does't exist."
@@ -113,12 +113,6 @@ def dashboard():
     This controls dashboards features
     """
 
-    user = UserDB.query.get(session['user_id'])
-
-    if !user:
-        return redirect(url_for('login'))
-
-
     return render_template('session/dashboard.html', logged_in=True, curr_user=user)
 
 
@@ -128,19 +122,11 @@ def session():
     This displays the session page
     """
 
-    user = UserDB.query.get(session['user_id'])
-    if !user:
-        return redirect(url_for('login'))
-
     return render_template('session/session.html')
 
 
 @app.route('/join')
 def join():
-    user = UserDB.query.get(session['user_id'])
-    if !user:
-        return redirect(url_for('login'))
-
     return render_template('session/join.html')
 
 
@@ -153,10 +139,16 @@ def logout():
 def profile():
 
     user = UserDB.query.get(session['user_id'])
-    if !user:
+    if user:
+        """
+        Do nothing
+        """
+        usersession = true
+    else:
+        usersession = false
         return redirect(url_for('login'))
 
-    return render_template('session/logout.html', logged_in=True, curr_user=user)
+    return render_template('session/profile.html', logged_in=True, curr_user=user)
 
 
 if __name__ == '__main__':
