@@ -49,7 +49,6 @@ def login():
         user = UserDB.query.filter_by(email=email).first()
 
         if user and check_password_hash(user.password, password):
-            session['user_id'] = user.id
             return redirect(url_for('dashboard'))
         else:
             message = "Account does't exist."
@@ -107,17 +106,12 @@ def passwordRecovery():
     return render_template('login/recover.html')
 
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/dashboard', methods=['GET'])
 def dashboard():
     """
     This controls dashboards features
     """
-
-    img = UserDB.query.filter_by(id=id).first()
-    if not img:
-        return 'Img Not Found!', 404
-
-    return render_template('session/dashboard.html', logged_in=True, img=img.img, mimetype=img.mimetype)
+    return render_template('session/dashboard.html', logged_in=True)
 
 
 @app.route('/session')

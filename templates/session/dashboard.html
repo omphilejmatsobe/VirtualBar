@@ -7,43 +7,83 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
 </head>
-<body>	
+<body class="dashboard">	
 	<div class="wrapper">
 		{% if logged_in %}
+		<nav>
+			<div  class="logo">
+				<a href="{{ url_for('home') }}"><h1>VirtualBar</h1></a>
+			</div>
+		</nav>
+		<div class="profile-cont">
 			<div class="user">
 				<div class="profile">
-					<img>
+					<img src="/static/images/user.png">
 				</div>
 				<div class="bio">
-					<h1>{{ username }}</h1>
-					<h3>{{ email }}</h3>
-					<h2>{{ bio }}</h2>
+					<h1>test</h1>
+					<h3>testone@gmail.com</h3>
 				</div>
 				<div class="options">
+					<a href="{{ url_for('dashboard') }}"><h1>Home</h1></a>
 					<a href="{{ url_for('profile') }}"><h1>Edit Profile</h1></a>
-					<a><h1>Notifications</h1></a>
+					<a><h1>Meetings</h1></a>
 				</div>
 				<div class="logout">
 					<a href="{{ url_for('logout') }}"><button>logout</button></a>
 				</div>
 			</div>
 			<div class="logs">
-				<div class="make-call">
-					<a href="{{ url_for('session') }}"><button>Make Call</button></a>
-				</div>
 				<div class="call-logs">
+					<!--  This is where the javascript goes -->
 					<div class="call-history">
-						<div class="name">
-							<h1>Name</h1>
+						<div class="card-top">
+							<!-- This is where name goes -->
+							<div class="top-left">
+								<h1>Friends Hangout</h1>
+								<h3>Hangout with frinds</h3>
+							</div>
+							<div class="top-right">
+								<div>
+									<div class="delete"><img class="add-delete" src="/static/images/delete.png"/></div>
+								</div>
+							</div>
+						</div>
+						<div class="card-bottom" >
+							<div><h1>Time</h1></div>
+							<div><h1>Type</h1></div>
 						</div>
 					</div>
+					<div><img class="add-delete" src="/static/images/add.png"></div>
+					<!--  This is where the javascript goes -->
 				</div>
 			</div>
 			<div class="chat">
 				<div class="user-text">
-					<div>Chat</div>
+					<div class="make-call">
+						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/video.png"/></a>
+						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/call.png"/></a>
+						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+					</div>
+				</div>
+
+				<div class="user-features">
+					<div class="features">
+						<h1>Calender</h1>
+					</div>
+				</div>
+				<div class="user-features">
+					<div class="features">
+						<h1>weather</h1>
+					</div>
+				</div>
+				<div class="user-features">
+					<div class="features">
+						<h1>Note</h1>
+					</div>
 				</div>
 			</div>
+		</div>
 		{% endif %}
 	</div>
 </body>

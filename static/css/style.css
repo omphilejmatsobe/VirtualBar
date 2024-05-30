@@ -3,8 +3,14 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
-    background: black;
+    background-image: url("/static/images/background.jpg");
+    background-size: cover;
     min-height: 100vh;
+}
+
+h1, h2, h3{
+    font-family: sans-serif;
+    font-weight: 400;
 }
 
 a{
@@ -100,7 +106,8 @@ button:hover{
 .login{
     width: 100%;
     height: 100vh;
-    background: black;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(2,2,122,1) 72%, rgba(43,107,214,1) 100%);
     display: flex;
     flex-direction: column;
 }
@@ -173,30 +180,115 @@ button:hover{
 
 /* User Page */
 
+
 .wrapper{
     width: 100%;
     height: 100vh;
     display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard .wrapper{
+    flex-direction: column;
+    position: relative;
+}
+
+.dashboard nav{
+    border-bottom: 1px rgb(227, 227, 227) solid;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    height: 60px;
+    align-items: center;
+    position: fixed;
+    background: white;
+    z-index: 1;
+}
+
+.dashboard .logo{
+    margin: 0;
+}
+
+.dashboard  nav a h1{
+    color: black;
+    font-size: 30px;
+}
+
+.profile-cont{
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    width: 100%;
+    display: flex;
     flex-direction: row;
-    background: rgb(40, 40, 80);
-    color: rgb(227, 227, 227);
+    position: relative;
 }
 
 .user{
-    border-right: 1px solid black;
+    background: rgb(249, 249, 249);
     display: flex;
     flex-direction: column;
     width: 300px;
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    position: fixed;
+    height: 85%;
+}
+
+.bio{
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.bio h1, h3{
+    margin: 0;
+}
+
+.bio h1{
+    font-size: 20px;
+}
+
+.bio h3{
+    font-size: 15px;
+}
+
+.options{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    height: 200px;
+}
+.options a{
+    width: fit-content;
+    padding: 0;
+    margin-bottom: 10px;
+    margin-right: auto;
+}
+.options a h1{
+    margin: 0;
+}
+
+.user a h1{
+    color: rgb(54, 54, 54);
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .profile{
     height: 200px;
     width: 200px;
     border-radius: 200px;
-    border: 2px white solid;
+    border: 5px rgb(255, 255, 255) solid;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.profile img{
+    height: 100%;
+    margin: 0;
 }
 
 .bio{
@@ -207,18 +299,128 @@ button:hover{
 }
 
 .logs{
-    border-right: 1px solid black;
     display: flex;
     flex-direction: column;
-    width: 800px;
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    left: 300px;
+    width: 800px;
+    position: absolute;
+    height: 95%;
+}
+
+.call-logs{
+    display: flex;
+    flex-direction: row;
+}
+
+.call-history{
+    height: 170px;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 2px 2px rgb(226, 226, 226);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.add-delete{
+    height: 22px;
+}
+
+.card-top{
+    height: 70px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.card-bottom{
+    width: 95%;
+    background: rgb(194, 194, 194);
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-bottom h1{
+    font-size: 15px;
+    margin: 2px;
+    margin-left: 10px;
 }
 
 .logout{
     margin-top: auto;
 }
+
+.card-top{
+    display: flex;
+    flex-direction: row;
+}
+
+.top-left{
+    width: 50%;
+    height: 100px;
+    padding: 5px;
+    margin-left: 18px;
+}
+
+.top-left h1{
+    font-size: 30px;
+    margin: 0;
+}
+
+.top-right{
+    display: flex;
+    width: 50%;
+    padding-right: 15px;
+}
+
+.chat{
+    position: absolute;
+    right: 0;
+    width: 400px;
+}
+
+.top-right > div{
+    margin-left: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    height: 100px;
+    margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 2px 2px rgb(226, 226, 226);
+}
+
+.user-text img{
+    height: 50px;
+    margin: 20px;
+}
+
+.user-features{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px rgb(226, 226, 226);
+}
+
 /* User Page */
 
 footer{
