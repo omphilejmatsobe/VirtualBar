@@ -10,6 +10,7 @@
 a{
     color: rgb(222, 222, 222);
     text-decoration: none;
+    cursor: pointer;
 }
 a:visited{
     color: rgb(222, 222, 222);
@@ -161,6 +162,56 @@ button:hover{
     align-items: center;
     justify-content: center;
 }
+
+/* User Page */
+
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background: rgb(40, 40, 80);
+    color: rgb(227, 227, 227);
+}
+
+.user{
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.profile{
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+    border: 2px white solid;
+}
+
+.bio{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logs{
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logout{
+    margin-top: auto;
+}
+/* User Page */
 
 footer{
     height: 300px;

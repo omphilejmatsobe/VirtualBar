@@ -11,6 +11,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask import url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utile import secure_filename
 
 
 app = Flask(__name__)
@@ -26,6 +27,11 @@ class UserDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=False, nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
+    bio = db.Column(db.String(500), unique=False, nullable=True)
+    contacts = db.Column(db.String(15), unique=True, nullable=True)
+    image = db.Column(db.Text, unique=True, nullable=False)
+    imagename = db.Column(db.String(100), unique=False, nullable=False)
+    mimetype = db.Column(db.Text, unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.Text, unique=True, nullable=False)
 
@@ -113,7 +119,11 @@ def dashboard():
     This controls dashboards features
     """
 
-    return render_template('session/dashboard.html', logged_in=True)
+    img = UserDB.query.filter_by(id=id).first()
+    if not img:
+        return 'Img Not Found!', 404
+
+    return render_template('session/dashboard.html', logged_in=True, img=img.img, mimetype=img.mimetype)
 
 
 @app.route('/session')
@@ -121,8 +131,8 @@ def session():
     """
     This displays the session page
     """
-
-    return render_template('session/session.html')
+    user_online = UserDB.query.get(session['user_id'])
+    return render_template('session/session.html', user_online=user_online)
 
 
 @app.route('/join')
@@ -137,18 +147,21 @@ def logout():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
+    pic = request.files['pic']
+    if not pic:
+        return 'No pic uploaded!', 400
 
-    user = UserDB.query.get(session['user_id'])
-    if user:
-        """
-        Do nothing
-        """
-        usersession = True
-    else:
-        usersession = False
-        return redirect(url_for('login'))
+    filename = secure_filename(pic.filename)
+    mimetype = pic.mimetype
 
-    return render_template('session/profile.html', logged_in=True, curr_user=user)
+    if not filename or not mimetype:
+        return 'Bad upload!', 400
+
+    img = UserDB(image=pic.read(), imagename=filename, mimetype=mimetype)
+    db.session.add(img)
+    db.session.commit()
+
+    return render_template('session/profile.html', logged_in=True)
 
 
 if __name__ == '__main__':

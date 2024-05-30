@@ -23,13 +23,13 @@
 				{% if message %}
 				<p id="login-message">{{ message }}</p>
 				{% endif %}
-				<div class="data-input" data-validate = "Username is required">
+				<div class="data-input" data-validate = "Username is required" >
 					<span>Email</span>
-					<input type="email" name="email" placeholder="Enter your email">
+					<input type="email" name="email" placeholder="Enter your email" required>
 				</div>
 				<div class="data-input" data-validate="Password is required">
 					<span>Password</span>
-					<input type="password" name="password" placeholder="Type your password">
+					<input type="password" name="password" placeholder="Type your password" required>
 				</div>
 				<div>
 					<a href="{{ url_for('passwordRecovery') }}">

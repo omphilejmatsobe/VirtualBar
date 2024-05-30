@@ -8,18 +8,20 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
 </head>
 <body>	
-	<div>
+	<div class="wrapper">
 		{% if logged_in %}
-		<div>
 			<div class="user">
 				<div class="profile">
 					<img>
 				</div>
 				<div class="bio">
+					<h1>{{ username }}</h1>
+					<h3>{{ email }}</h3>
+					<h2>{{ bio }}</h2>
 				</div>
 				<div class="options">
+					<a href="{{ url_for('profile') }}"><h1>Edit Profile</h1></a>
 					<a><h1>Notifications</h1></a>
-					<a><h1>Settings</h1></a>
 				</div>
 				<div class="logout">
 					<a href="{{ url_for('logout') }}"><button>logout</button></a>
@@ -39,10 +41,9 @@
 			</div>
 			<div class="chat">
 				<div class="user-text">
-					<div>Name</div>
+					<div>Chat</div>
 				</div>
 			</div>
-		</div>
 		{% endif %}
 	</div>
 </body>
