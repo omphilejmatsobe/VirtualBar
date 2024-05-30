@@ -11,7 +11,37 @@
 	<div>
 		{% if logged_in %}
 		<div>
-			<h1>Hello I am Dash</h1>
+			<div class="user">
+				<div class="profile">
+					<img>
+				</div>
+				<div class="bio">
+				</div>
+				<div class="options">
+					<a><h1>Notifications</h1></a>
+					<a><h1>Settings</h1></a>
+				</div>
+				<div class="logout">
+					<a href="{{ url_for('logout') }}"><button>logout</button></a>
+				</div>
+			</div>
+			<div class="logs">
+				<div class="make-call">
+					<a href="{{ url_for('session') }}"><button>Make Call</button></a>
+				</div>
+				<div class="call-logs">
+					<div class="call-history">
+						<div class="name">
+							<h1>Name</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="chat">
+				<div class="user-text">
+					<div>Name</div>
+				</div>
+			</div>
 		</div>
 		{% endif %}
 	</div>
