@@ -20,6 +20,9 @@
 				<span>
 					<h1>Login</h1>
 				</span>
+				{% if message %}
+				<p id="text">{{ message }}</p>
+				{% endif %}
 				<div class="data-input" data-validate = "Username is required">
 					<span>Email</span>
 					<input type="email" name="email" placeholder="Type your username">
