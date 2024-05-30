@@ -46,7 +46,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = UserDB.query.filter_by(email=email, password=password).first()
+        user = UserDB.query.filter_by((UserDB.username == username)|(UserDB.email == email), password=password).first()
 
         if user and check_password_hash(user.password, password):
             session['user id'] = user.id
