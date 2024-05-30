@@ -46,7 +46,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = UserDB.query.filter_by(UserDB.email == email).first()
+        user = UserDB.query.filter_by(email=email, password=password).first()
 
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
@@ -69,7 +69,7 @@ def signup():
         email = request.form['email']
         password = request.form['password']
 
-        user = UserDB.query.filter((UserDB.username == username)|(UserDB.email == email)).first()
+        user = UserDB.query.filter((UserDB.username==username)|(UserDB.email==email)).first()
 
         if user:
             message = "Account Exists."
