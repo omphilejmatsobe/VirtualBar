@@ -130,6 +130,11 @@ button:hover{
     color: white;
 }
 
+.login-message{
+    color: red;
+    font-size: 20px;
+}
+
 .data-input{
     display: flex;
     flex-direction: column;
