@@ -104,7 +104,7 @@ def passwordRecovery():
             flash that email does not exist and return to login
             """
             return redirect(url_for('login'))
-    return render_templater('login/recover.html')
+    return render_template('login/recover.html')
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
@@ -113,7 +113,7 @@ def dashboard():
     This controls dashboards features
     """
 
-    return render_template('session/dashboard.html', logged_in=True, curr_user=user)
+    return render_template('session/dashboard.html', logged_in=True)
 
 
 @app.route('/session')
@@ -143,9 +143,9 @@ def profile():
         """
         Do nothing
         """
-        usersession = true
+        usersession = True
     else:
-        usersession = false
+        usersession = False
         return redirect(url_for('login'))
 
     return render_template('session/profile.html', logged_in=True, curr_user=user)

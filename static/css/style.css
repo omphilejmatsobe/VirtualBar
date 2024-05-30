@@ -8,11 +8,11 @@
 }
 
 a{
-    color: aqua;
+    color: rgb(222, 222, 222);
     text-decoration: none;
 }
 a:visited{
-    color: aqua;
+    color: rgb(222, 222, 222);
 }
 
 nav{
@@ -111,23 +111,37 @@ button:hover{
     flex-direction: column;
 }
 
+.login form > span{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login form{
     width: fit-content;
     height: 100%;
-    border-radius: 50px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    background: rgb(68, 68, 68);
+    background: rgb(111, 111, 111);
     color: white;
     align-content: center;
     justify-content: center;
-    padding: 50px;
+    padding: 20px;
 }
 
 .login form input{
     background: none;
     height: 30px;
+    width: 250px;
+    margin-top: 5px;
+    border-radius: 30px;
     color: white;
+    padding: 5px;
+    padding-left: 20px ;
+    border: 1px white solid;
+    margin-bottom: 5px;
 }
 
 .login-message{
