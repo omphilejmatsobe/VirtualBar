@@ -53,7 +53,7 @@ def login():
             return redirect(url_for('dashboard'))
         else:
             message = "Account does't exist."
-    return render_template('login/login.html', )
+    return render_template('login/login.html', message=message)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -69,7 +69,7 @@ def signup():
         email = request.form['email']
         password = request.form['password']
 
-        user = UserDB.query.filter((UserDB.name == username)|(UserDB.email == email)).first()
+        user = UserDB.query.filter((UserDB.username == username)|(UserDB.email == email)).first()
 
         if user:
             message = "Account Exists."
