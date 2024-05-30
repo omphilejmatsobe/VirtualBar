@@ -11,7 +11,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask import url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.utile import secure_filename
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -27,14 +27,8 @@ class UserDB(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=False, nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
-    bio = db.Column(db.String(500), unique=False, nullable=True)
-    contacts = db.Column(db.String(15), unique=True, nullable=True)
-    image = db.Column(db.Text, unique=True, nullable=False)
-    imagename = db.Column(db.String(100), unique=False, nullable=False)
-    mimetype = db.Column(db.Text, unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.Text, unique=True, nullable=False)
-
 
 @app.route('/')
 def home():
@@ -52,7 +46,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = UserDB.query.filter_by(email=email, password=password).first()
+        user = UserDB.query.filter_by(email=email).first()
 
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
@@ -80,8 +74,8 @@ def signup():
         if user:
             message = "Account Exists."
         else:
-            password = generate_password_hash(password)
-            newUser = UserDB(name=name, username=username, email=email, password=password)
+            hashed_password = generate_password_hash(password)
+            newUser = UserDB(name=name, username=username, email=email, password=hashed_password)
             db.session.add(newUser)
             db.session.commit()
 

@@ -145,6 +145,14 @@ button:hover{
     margin-bottom: 5px;
 }
 
+.login form input::placeholder{
+    color: #c6c6c6;
+}
+
+.login .wrapper{
+    background: none;
+}
+
 .login-message{
     color: red;
     font-size: 20px;
