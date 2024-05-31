@@ -35,14 +35,14 @@
 			</div>
 			<div class="logs">
 				<div class="call-logs">
-					<form action="{{ url_for('profile') }}" method="POST">
+					<form action="{{ url_for('profile') }}" enctype="multipart/form-data" method="POST">
 						<div class="data-input" data-validate = "Username is required">
 							<span>Profile Pictue</span>
-							<input type="file" name="picture" placeholder="Put your picture" required>
+							<input type="file"  name="picture" placeholder="Put your picture">
 						</div>
 						<div class="data-input" data-validate = "Username is required">
 							<span>Username</span>
-							<input type="text" name="username" placeholder="Type your username" required>
+							<input type="text" name="username" placeholder="Type your new username" required>
 						</div>
 						<div class="button">
 							<button class="ProfileButton" type="submit">

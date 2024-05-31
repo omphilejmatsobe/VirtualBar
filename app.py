@@ -182,7 +182,6 @@ def profile():
         user_online.picname = secure_filename(pic.filename)
 
         user_online.username = request.form['username']
-        user_online.image = request.form['email']
 
         default_img = False;
         db.session.add(user_online)
