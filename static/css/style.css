@@ -313,6 +313,7 @@ button:hover{
 .call-logs{
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
 }
 
 .call-history{
@@ -421,6 +422,39 @@ button:hover{
     box-shadow: 1px 1px 2px 2px rgb(226, 226, 226);
 }
 
+.call-history p{
+    font-size: 15px;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+#meeting{
+    height: fit-content;
+}
+#meeting .call-logs{
+    height: fit-content;
+}
+
+#meeting .call-logs > div{
+    height: fit-content;
+}
+
+#meeting img{
+    height: 40px;
+}
+
+#fill{
+    color: rgb(8, 82, 255);
+}
+
+.call-logs{
+    display: flex;
+    flex-direction: column;
+}
+
+.call-history{
+    margin-bottom: 20px;
+}
 /* User Page */
 
 footer{

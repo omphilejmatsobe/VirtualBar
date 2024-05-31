@@ -119,8 +119,17 @@ def session():
     """
     This displays the session page
     """
-    user_online = UserDB.query.get(session['user_id'])
+    user_online = "Hi"
     return render_template('session/session.html', user_online=user_online)
+
+
+@app.route('/call')
+def call():
+    """
+    This displays the session page
+    """
+    user_online = "Hi"
+    return render_template('session/call.html', user_online=user_online)
 
 
 @app.route('/join')
@@ -133,8 +142,14 @@ def logout():
     return redirect( url_for('login'))
 
 
+@app.route('/meeting')
+def meeting():
+    return render_template('session/meeting.html', logged_in=True)
+
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
+
+    """
     pic = request.files['pic']
     if not pic:
         return 'No pic uploaded!', 400
@@ -148,6 +163,7 @@ def profile():
     img = UserDB(image=pic.read(), imagename=filename, mimetype=mimetype)
     db.session.add(img)
     db.session.commit()
+    """
 
     return render_template('session/profile.html', logged_in=True)
 

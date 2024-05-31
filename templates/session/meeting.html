@@ -26,34 +26,39 @@
 				</div>
 				<div class="options">
 					<a href="{{ url_for('dashboard') }}"><h1>Home</h1></a>
-					<a href="{{ url_for('profile') }}"><h1 id="fill">Edit Profile</h1></a>
-					<a href="{{ url_for('meeting') }}"><h1>Meetings</h1></a>
+					<a href="{{ url_for('profile') }}"><h1>Edit Profile</h1></a>
+					<a href="{{ url_for('meeting') }}"><h1 id="fill">Meetings</h1></a>
 				</div>
 				<div class="logout">
 					<a href="{{ url_for('logout') }}"><button>logout</button></a>
 				</div>
 			</div>
-			<div class="logs">
+			<div class="logs" id="meeting">
 				<div class="call-logs">
-					<form action="/signup" method="POST">
-						<div class="data-input" data-validate = "Username is required">
-							<span>Username</span>
-							<input type="text" name="username" placeholder="Type your username" required>
-						</div>
-						<div class="data-input" data-validate = "Username is required">
-							<span>Username</span>
-							<input type="text" name="username" placeholder="Type your username" required>
-						</div>
-						<div class="data-input" data-validate = "Username is required">
-							<span>Email</span>
-							<input type="email" name="email" placeholder="Enter your email" required>
-						</div>
-						<div class="button">
-							<button type="submit">
-									Update
-							</button>
-						</div>
-					</form>
+					<!--  This is where the javascript goes -->
+					<div class="call-history">
+						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/video.png"/></a>
+						<p>Enjoy crystal-clear video calls with our app's high-definition video feature. It ensures smooth and uninterrupted communication, making it easy to connect face-to-face with colleagues and clients from anywhere in the world.</p>
+					</div>
+					<!--  This is where the javascript goes -->
+				</div>
+				<div class="call-logs">
+					<!--  This is where the javascript goes -->
+					<div class="call-history">
+						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/call.png"/></a>
+						<p>
+							Stay connected with crystal-clear audio calls, ensuring you never miss an important conversation. Our call feature offers high-definition quality, low latency, and robust security, making every call feel like an in-person meeting.
+						</p>
+					</div>
+					<!--  This is where the javascript goes -->
+				</div>
+				<div class="call-logs">
+					<!--  This is where the javascript goes -->
+					<div class="call-history">
+						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+						<p>Share your favorite movies with ease using our movie sharing feature. Stream films directly within your virtual meeting, allowing everyone to watch together in real-time, complete with synchronized playback and interactive discussion tools.</p>
+					</div>
+					<!--  This is where the javascript goes -->
 				</div>
 			</div>
 			<div class="chat">
