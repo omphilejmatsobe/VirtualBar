@@ -21,8 +21,8 @@
 					<img src="/static/images/user.png">
 				</div>
 				<div class="bio">
-					<h1>test</h1>
-					<h3>testone@gmail.com</h3>
+					<h1>{{ user_online.username }}</h1>
+					<h3>{{ user_online.email }}</h3>
 				</div>
 				<div class="options">
 					<a href="{{ url_for('dashboard') }}"><h1>Home</h1></a>
@@ -37,7 +37,7 @@
 				<div class="call-logs">
 					<!--  This is where the javascript goes -->
 					<div class="call-history">
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/video.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/video.png"/></a>
 						<p>Enjoy crystal-clear video calls with our app's high-definition video feature. It ensures smooth and uninterrupted communication, making it easy to connect face-to-face with colleagues and clients from anywhere in the world.</p>
 					</div>
 					<!--  This is where the javascript goes -->
@@ -45,7 +45,7 @@
 				<div class="call-logs">
 					<!--  This is where the javascript goes -->
 					<div class="call-history">
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/call.png"/></a>
+						<a href="{{ url_for('call') }}" target="_blank"><img src="/static/images/call.png"/></a>
 						<p>
 							Stay connected with crystal-clear audio calls, ensuring you never miss an important conversation. Our call feature offers high-definition quality, low latency, and robust security, making every call feel like an in-person meeting.
 						</p>
@@ -55,7 +55,7 @@
 				<div class="call-logs">
 					<!--  This is where the javascript goes -->
 					<div class="call-history">
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
 						<p>Share your favorite movies with ease using our movie sharing feature. Stream films directly within your virtual meeting, allowing everyone to watch together in real-time, complete with synchronized playback and interactive discussion tools.</p>
 					</div>
 					<!--  This is where the javascript goes -->
@@ -64,9 +64,9 @@
 			<div class="chat">
 				<div class="user-text">
 					<div class="make-call">
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/video.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
 						<a href="{{ url_for('call') }}" target="_blank"><img src="/static/images/call.png"/></a>
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
 					</div>
 				</div>
 

@@ -23,6 +23,7 @@ db = SQLAlchemy(app)
 notes = []
 calls = []
 
+
 class UserDB(db.Model):
     """
     This initializes the database table and columns
@@ -52,7 +53,8 @@ def login():
         user = UserDB.query.filter_by(email=email).first()
 
         if user and check_password_hash(user.password, password):
-            return redirect(url_for('dashboard'))
+            session['user_id'] = user.id
+            return redirect(url_for('dashboard',  username=user.username, email=user.email))
         else:
             message = "Account does't exist."
     return render_template('login/login.html', message=message)
@@ -114,15 +116,21 @@ def dashboard():
     """
     This controls dashboards features
     """
-    return render_template('session/dashboard.html', logged_in=True, calls=calls, notes=notes)
+
+    user = UserDB.query.get(session['user_id'])
+
+    if not user:
+        return redirect(url_for('login'))
+
+    return render_template('session/dashboard.html', logged_in=True, calls=calls, notes=notes, user=user)
 
 
 @app.route('/session')
-def session():
+def sessionmeeting():
     """
     This displays the session page
     """
-    user_online = "Hi"
+    user_online = UserDB.query.get(session['user_id'])
     return render_template('session/session.html', user_online=user_online)
 
 
@@ -131,7 +139,7 @@ def call():
     """
     This displays the session page
     """
-    user_online = "Hi"
+    user_online = UserDB.query.get(session['user_id'])
     return render_template('session/call.html', user_online=user_online)
 
 
@@ -147,15 +155,23 @@ def logout():
 
 @app.route('/meeting')
 def meeting():
-    return render_template('session/meeting.html', logged_in=True)
+    user_online = UserDB.query.get(session['user_id'])
+    return render_template('session/meeting.html', logged_in=True, user_online=user_online)
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
 
+    user_online = UserDB.query.get(session['user_id'])
+
+    if request.method == 'POST':
+        user_online.name = request.form['name']
+
+        db.session.add(user_online)
+        db.session.commit()
     """
     pic = request.files['pic']
     if not pic:
-        return 'No pic uploaded!', 400
+        return 'No pic0
 
     filename = secure_filename(pic.filename)
     mimetype = pic.mimetype
@@ -168,7 +184,7 @@ def profile():
     db.session.commit()
     """
 
-    return render_template('session/profile.html', logged_in=True)
+    return render_template('session/profile.html', logged_in=True, user_online=user_online)
 
 
 @app.route('/dashboard/addcall', methods=['POST'])
@@ -181,12 +197,12 @@ def addcall():
     calls.append({"name": name, "description" : description, "time" : time, "type" : type})
     return redirect(url_for('dashboard'))
 
-@app.route('/dashboard/deletecall/<int:index>', methods=['POST'])
+@app.route('/dashboard/deletecall/<int:index>')
 def deletecall(index):
     del calls[index]
     return redirect(url_for('dashboard'))
 
-@app.route('/dashboard/deletenote/<int:index>', methods=['POST'])
+@app.route('/dashboard/<int:index>')
 def deletenote(index):
     del notes[index]
     return redirect(url_for('dashboard'))

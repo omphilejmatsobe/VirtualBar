@@ -558,6 +558,18 @@ button:hover{
     color: white;
     margin-left: 10px;
 }
+
+.ProfileButton{
+    border-radius: 0;
+    background: none;
+    border: 1px black solid;
+    color: black;
+}
+
+.ProfileButton:hover{
+    color: white;
+}
+
 /* User Page */
 
 footer{

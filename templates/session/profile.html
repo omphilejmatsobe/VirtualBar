@@ -21,8 +21,8 @@
 					<img src="/static/images/user.png">
 				</div>
 				<div class="bio">
-					<h1>test</h1>
-					<h3>testone@gmail.com</h3>
+					<h1>{{ user_online.username }}</h1>
+					<h3>{{ user_online.email }}</h3>
 				</div>
 				<div class="options">
 					<a href="{{ url_for('dashboard') }}"><h1>Home</h1></a>
@@ -37,19 +37,15 @@
 				<div class="call-logs">
 					<form action="/signup" method="POST">
 						<div class="data-input" data-validate = "Username is required">
-							<span>Username</span>
-							<input type="text" name="username" placeholder="Type your username" required>
+							<span>Profile Pictue</span>
+							<input type="file" name="pic" placeholder="Type your username" required>
 						</div>
 						<div class="data-input" data-validate = "Username is required">
 							<span>Username</span>
 							<input type="text" name="username" placeholder="Type your username" required>
-						</div>
-						<div class="data-input" data-validate = "Username is required">
-							<span>Email</span>
-							<input type="email" name="email" placeholder="Enter your email" required>
 						</div>
 						<div class="button">
-							<button type="submit">
+							<button class="ProfileButton" type="submit">
 									Update
 							</button>
 						</div>
@@ -59,9 +55,9 @@
 			<div class="chat">
 				<div class="user-text">
 					<div class="make-call">
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/video.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/video.png"/></a>
 						<a href="{{ url_for('call') }}" target="_blank"><img src="/static/images/call.png"/></a>
-						<a href="{{ url_for('session') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
 					</div>
 				</div>
 
