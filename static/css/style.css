@@ -1,3 +1,8 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
 .hero{
     width: 100%;
     height: fit-content;
@@ -204,6 +209,7 @@ button:hover{
     position: fixed;
     background: white;
     z-index: 1;
+
 }
 
 .dashboard .logo{
@@ -218,7 +224,7 @@ button:hover{
 .profile-cont{
     margin-top: 60px;
     height: calc(100vh - 60px);
-    overflow: hidden;
+    
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -495,6 +501,62 @@ button:hover{
 
 .title h1{
     font-size: 18px;
+}
+
+.user-features{
+    height: fit-content;
+}
+
+.content{
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    overflow: hidden;
+}
+.calendar{
+    border-radius: 5px;
+}
+
+#call-form h1{
+    color: rgb(189, 189, 189);
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+
+#call-form{
+    height: fit-content;
+}
+#call-form > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+#call-form .top-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+#call-form input{
+    border-radius: 20px;
+    height: 30px;
+    background: rgb(47, 49, 92);
+    border: 3px rgb(171, 171, 171) solid;
+    padding-left: 20px;
+    margin-bottom: 5px;
+}
+
+#call-form input::placeholder{
+    color: white;
+    margin-left: 10px;
 }
 /* User Page */
 
