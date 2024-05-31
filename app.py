@@ -34,6 +34,8 @@ class UserDB(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.Text, unique=True, nullable=False)
 
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -164,7 +166,7 @@ def profile():
     user_online = UserDB.query.get(session['user_id'])
 
     if request.method == 'POST':
-        user_online.name = request.form['name']
+        user_online.username = request.form['username']
 
         db.session.add(user_online)
         db.session.commit()

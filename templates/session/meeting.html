@@ -64,7 +64,7 @@
 			<div class="chat">
 				<div class="user-text">
 					<div class="make-call">
-						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/video.png"/></a>
 						<a href="{{ url_for('call') }}" target="_blank"><img src="/static/images/call.png"/></a>
 						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
 					</div>
@@ -72,19 +72,44 @@
 
 				<div class="user-features">
 					<div class="features">
-						<h1>Calender</h1>
+						<div class="title">
+							<div class="arrow"><img src="/static/images/arrow.png"/></div>
+							<img src="/static/images/calender.png"/>
+							<h1>Calender</h1>
+						</div>
+						<div class="content">
+							<iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&bgcolor=%239E69AF&showTitle=0&showPrint=0&showDate=0&src=ZjVjZjQ4ZjRjYjJkYjUxMDU0YmJiNDhkNDUzZDIzMDJiNWUyYjA3ODBhNzgyZTAzMjFmMmFiNWQyNGEyMWY5ZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237986CB" style="border-width:0" width="300" height="180" frameborder="0" scrolling="no"></iframe>
+						</div>
 					</div>
 				</div>
 				<div class="user-features">
 					<div class="features">
-						<h1>weather</h1>
+						<div class="title">
+							<div class="arrow"><img src="/static/images/arrow.png"/></div>
+							<img src="/static/images/weather.png"/>
+							<h1>Weather</h1>
+						</div>
+						<div class="content">
+							<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+							<div class="elfsight-app-e1f18347-6392-450a-ad9f-bb774c024c34" data-elfsight-app-lazy></div>
+						</div>
 					</div>
 				</div>
+				
+				{% for notes in notes %}
 				<div class="user-features">
 					<div class="features">
-						<h1>Note</h1>
+						<div class="title">
+							<div><img src="/static/images/arrow.png"/></div>
+							<img src="/static/images/notes.png"/>
+							<h1>Calender</h1>
+						</div>
+						<div class="content">
+							<p>{{ notes['note'] }}</p>
+						</div>
 					</div>
 				</div>
+				{% endfor %}
 			</div>
 		</div>
 		{% endif %}
