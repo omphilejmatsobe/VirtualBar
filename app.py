@@ -5,7 +5,7 @@ This module runs most of the program
 and operates the important classes and
 instructions.
 """
-
+import mimetypes
 
 from flask import Flask, render_template, request, redirect, session
 from flask import url_for, flash
@@ -34,6 +34,9 @@ class UserDB(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.Text, unique=True, nullable=False)
 
+    img = db.Column(db.Text, unique=True, nullable=True)
+    picname = db.Column(db.Text, unique=True, nullable=True)
+    mimetype = db.Column(db.Text, unique=True, nullable=True)
 
 
 @app.route('/')
@@ -124,7 +127,10 @@ def dashboard():
     if not user:
         return redirect(url_for('login'))
 
-    return render_template('session/dashboard.html', logged_in=True, calls=calls, notes=notes, user=user)
+    if not user.img:
+        default_img = True;
+
+    return render_template('session/dashboard.html', logged_in=True, defaul_img=default_img, calls=calls, notes=notes, user=user)
 
 
 @app.route('/session')
@@ -165,28 +171,24 @@ def profile():
 
     user_online = UserDB.query.get(session['user_id'])
 
-    if request.method == 'POST':
-        user_online.username = request.form['username']
+    default_img = True;
+    pic = user_online.img;
 
+    if request.method == 'POST':
+        pic = request.files['picture']
+
+        user_online.img = pic.read()
+        user_online.mimetype = pic.mimetype
+        user_online.picname = secure_filename(pic.filename)
+
+        user_online.username = request.form['username']
+        user_online.image = request.form['email']
+
+        default_img = False;
         db.session.add(user_online)
         db.session.commit()
-    """
-    pic = request.files['pic']
-    if not pic:
-        return 'No pic0
 
-    filename = secure_filename(pic.filename)
-    mimetype = pic.mimetype
-
-    if not filename or not mimetype:
-        return 'Bad upload!', 400
-
-    img = UserDB(image=pic.read(), imagename=filename, mimetype=mimetype)
-    db.session.add(img)
-    db.session.commit()
-    """
-
-    return render_template('session/profile.html', logged_in=True, user_online=user_online)
+    return render_template('session/profile.html', pic=pic, default_img=default_img, logged_in=True, user_online=user_online)
 
 
 @app.route('/dashboard/addcall', methods=['POST'])
