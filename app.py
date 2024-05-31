@@ -172,22 +172,16 @@ def profile():
     user_online = UserDB.query.get(session['user_id'])
 
     default_img = True;
-    pic = user_online.img;
 
     if request.method == 'POST':
-        pic = request.files['picture']
-
-        user_online.img = pic.read()
-        user_online.mimetype = pic.mimetype
-        user_online.picname = secure_filename(pic.filename)
-
+        user_online.username = request.form['name']
         user_online.username = request.form['username']
 
         default_img = False;
         db.session.add(user_online)
         db.session.commit()
 
-    return render_template('session/profile.html', pic=pic, default_img=default_img, logged_in=True, user_online=user_online)
+    return render_template('session/profile.html', default_img=default_img, logged_in=True, user_online=user_online)
 
 
 @app.route('/dashboard/addcall', methods=['POST'])
