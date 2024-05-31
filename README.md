@@ -1,6 +1,6 @@
-# VIRTUAL BAR
+# VIRTUALBAR
 
-# Low Level Programming
+# Video Streaming Application
 
 Let's learn Flask. This is my first step to learning Flask and Virtual Video Streaming with the python programming language.
 
