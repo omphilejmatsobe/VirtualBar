@@ -35,13 +35,31 @@
 			</div>
 			<div class="logs">
 				<div class="call-logs">
+
+					<form action="{{ url_for('addcall') }}" class="call-history" id="call-form" method="post">
+						<div class="card-top">
+							<!-- This is where name goes -->
+							<div class="top-left"> 
+								<h1>Add Call Reminder</h1>
+								<input type="text" name="name" placeholder="Enter Call Name" required/>
+								<input type="text" name="description" placeholder="Enter Call description" required/>
+							</div>
+						</div>
+						<div class="card-bottom" >
+							<div><input type="time" name="time" placeholder="Enter Call Name" required/></div>
+							<div><input type="text" name="type" placeholder="Enter Call Name" required/></div>
+						</div>
+						<div><button type="submit">Add</button></div>
+					</form>
+
 					<!--  This is where the javascript goes -->
+					{% for calls in calls %}
 					<div class="call-history">
 						<div class="card-top">
 							<!-- This is where name goes -->
 							<div class="top-left">
-								<h1>Friends Hangout</h1>
-								<h3>Hangout with frinds</h3>
+								<h1>{{ calls['name'] }}</h1>
+								<h3>{{ calls['description'] }}</h3>
 							</div>
 							<div class="top-right">
 								<div>
@@ -50,11 +68,12 @@
 							</div>
 						</div>
 						<div class="card-bottom" >
-							<div><h1>Time</h1></div>
-							<div><h1>Type</h1></div>
+							<div><h1>{{ calls['time'] }}</h1></div>
+							<div><h1>{{ calls['type'] }}</h1></div>
 						</div>
 					</div>
-					<div><img class="add-delete" src="/static/images/add.png"></div>
+					{% endfor %}
+
 					<!--  This is where the javascript goes -->
 				</div>
 
@@ -78,11 +97,15 @@
 						<h1>weather</h1>
 					</div>
 				</div>
+				
+				{% for notes in notes %}
 				<div class="user-features">
 					<div class="features">
 						<h1>Note</h1>
+						<p>{{ notes['note'] }}</p>
 					</div>
 				</div>
+				{% endfor %}
 			</div>
 		</div>
 		{% endif %}

@@ -20,6 +20,9 @@ app.config['SECRET_KEY'] = 'super user'
 db = SQLAlchemy(app)
 
 
+notes = []
+calls = []
+
 class UserDB(db.Model):
     """
     This initializes the database table and columns
@@ -111,7 +114,7 @@ def dashboard():
     """
     This controls dashboards features
     """
-    return render_template('session/dashboard.html', logged_in=True)
+    return render_template('session/dashboard.html', logged_in=True, calls=calls, notes=notes)
 
 
 @app.route('/session')
@@ -167,6 +170,32 @@ def profile():
 
     return render_template('session/profile.html', logged_in=True)
 
+
+@app.route('/dashboard/addcall', methods=['POST'])
+def addcall():
+
+    name = request.form['name']
+    description = request.form['description']
+    time = request.form['time']
+    type = request.form['type']
+    calls.append({"name": name, "description" : description, "time" : time, "type" : type})
+    return redirect(url_for('dashboard'))
+
+@app.route('/dashboard/deletecall/<int:index>', methods=['POST'])
+def deletecall(index):
+    del calls[index]
+    return redirect(url_for('dashboard'))
+
+@app.route('/dashboard/deletenote/<int:index>', methods=['POST'])
+def deletenote(index):
+    del notes[index]
+    return redirect(url_for('dashboard'))
+
+@app.route('/dashboard/addnote', methods=['POST'])
+def addnote():
+    note = request.form['note']
+    notes.append({"note": note})
+    return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)

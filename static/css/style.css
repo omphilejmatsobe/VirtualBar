@@ -455,6 +455,23 @@ button:hover{
 .call-history{
     margin-bottom: 20px;
 }
+
+#call-form {
+    background: rgb(24, 25, 67);
+}
+
+#call-form h1, #call-form h3{
+    color: rgb(153, 153, 153);
+}
+
+
+#call-form .card-top .top-left{
+    width: 95%;
+}
+
+#call-form .card-bottom{
+    background: none;
+}
 /* User Page */
 
 footer{
