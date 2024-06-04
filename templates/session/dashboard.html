@@ -6,41 +6,132 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+	<script type="text/javascript">
+		let contentDiv = document.querySelectorAll('.content');
+		contentDiv.style.background = 'red';
+		contentDiv.style.height = '800px';
+	</script>
 </head>
-<body>	
-	<div>
+<body class="dashboard">	
+	<div class="wrapper">
 		{% if logged_in %}
-		<div>
+		<nav>
+			<div  class="logo">
+				<a href="{{ url_for('home') }}"><h1>VirtualBar</h1></a>
+			</div>
+		</nav>
+		<div class="profile-cont">
 			<div class="user">
 				<div class="profile">
-					<img>
+					<img src="/static/images/user.png">
 				</div>
 				<div class="bio">
+					<h1>{{ user.username }}</h1>
+					<h3>{{ user.email }}</h3>
 				</div>
 				<div class="options">
-					<a><h1>Notifications</h1></a>
-					<a><h1>Settings</h1></a>
+					<a href="{{ url_for('dashboard') }}"><h1 id="fill">Home</h1></a>
+					<a href="{{ url_for('profile') }}"><h1>Edit Profile</h1></a>
+					<a href="{{ url_for('meeting') }}"><h1>Meetings</h1></a>
 				</div>
 				<div class="logout">
 					<a href="{{ url_for('logout') }}"><button>logout</button></a>
 				</div>
 			</div>
 			<div class="logs">
-				<div class="make-call">
-					<a href="{{ url_for('session') }}"><button>Make Call</button></a>
-				</div>
 				<div class="call-logs">
+
+					<form action="{{ url_for('addcall') }}" class="call-history" id="call-form" method="post">
+						<div class="card-top">
+							<!-- This is where name goes -->
+							<div class="top-left"> 
+								<h1>Add Call Reminder</h1>
+								<input type="text" name="name" placeholder="Enter Call Name" required/>
+								<input type="text" name="description" placeholder="Enter Call description" required/>
+							</div>
+						</div>
+						<div class="card-bottom" >
+							<div><input type="time" name="time" placeholder="Enter Call Name" required/></div>
+							<div><input type="text" name="type" placeholder="Enter Note" required/></div>
+						</div>
+						<div><button type="submit">Add</button></div>
+					</form>
+
+					<!--  This is where the javascript goes -->
+					{% for calls in calls %}
 					<div class="call-history">
-						<div class="name">
-							<h1>Name</h1>
+						<div class="card-top">
+							<!-- This is where name goes -->
+							<div class="top-left">
+								<h1>{{ calls['name'] }}</h1>
+								<h3>{{ calls['description'] }}</h3>
+							</div>
+							<div class="top-right">
+								<div>
+									<a href="{{ url_for('deletecall', index=loop.index0) }}" class="delete"><img class="add-delete" src="/static/images/delete.png"/></a>
+								</div>
+							</div>
+						</div>
+						<div class="card-bottom" >
+							<div><h1>{{ calls['time'] }}</h1></div>
+							<div><h1>{{ calls['type'] }}</h1></div>
 						</div>
 					</div>
+					{% endfor %}
+
+					<!--  This is where the javascript goes -->
 				</div>
+
 			</div>
 			<div class="chat">
 				<div class="user-text">
-					<div>Name</div>
+					<div class="make-call">
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/video.png"/></a>
+						<a href="{{ url_for('call') }}" target="_blank"><img src="/static/images/call.png"/></a>
+						<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+					</div>
 				</div>
+
+				<div class="user-features">
+					<div class="features">
+						<div class="title">
+							<div class="arrow"><img src="/static/images/arrow.png"/></div>
+							<img src="/static/images/calender.png"/>
+							<h1>Calender</h1>
+						</div>
+						<div class="content">
+							<iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&bgcolor=%239E69AF&showTitle=0&showPrint=0&showDate=0&src=ZjVjZjQ4ZjRjYjJkYjUxMDU0YmJiNDhkNDUzZDIzMDJiNWUyYjA3ODBhNzgyZTAzMjFmMmFiNWQyNGEyMWY5ZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237986CB" style="border-width:0" width="300" height="180" frameborder="0" scrolling="no"></iframe>
+						</div>
+					</div>
+				</div>
+				<div class="user-features">
+					<div class="features">
+						<div class="title">
+							<div class="arrow"><img src="/static/images/arrow.png"/></div>
+							<img src="/static/images/weather.png"/>
+							<h1>Weather</h1>
+						</div>
+						<div class="content">
+							<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+							<div class="elfsight-app-e1f18347-6392-450a-ad9f-bb774c024c34" data-elfsight-app-lazy></div>
+						</div>
+					</div>
+				</div>
+				
+				{% for notes in notes %}
+				<div class="user-features">
+					<div class="features">
+						<div class="title">
+							<div><img src="/static/images/arrow.png"/></div>
+							<img src="/static/images/notes.png"/>
+							<h1>Calender</h1>
+						</div>
+						<div class="content">
+							<p>{{ notes['note'] }}</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
 			</div>
 		</div>
 		{% endif %}

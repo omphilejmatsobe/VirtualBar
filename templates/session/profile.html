@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+</head>
+<body class="dashboard">	
+	<div class="wrapper">
+		{% if logged_in %}
+		<nav>
+			<div  class="logo">
+				<a href="{{ url_for('home') }}"><h1>VirtualBar</h1></a>
+			</div>
+		</nav>
+		<div class="profile-cont">
+			<div class="user">
+				<div class="profile">
+					<img src="/static/images/user.png">
+				</div>
+				<div class="bio">
+					<h1>{{ user_online.username }}</h1>
+					<h3>{{ user_online.email }}</h3>
+				</div>
+				<div class="options">
+					<a href="{{ url_for('dashboard') }}"><h1>Home</h1></a>
+					<a href="{{ url_for('profile') }}"><h1 id="fill">Edit Profile</h1></a>
+					<a href="{{ url_for('meeting') }}"><h1>Meetings</h1></a>
+				</div>
+				<div class="logout">
+					<a href="{{ url_for('logout') }}"><button>logout</button></a>
+				</div>
+			</div>
+			<div class="logs">
+				<div class="call-logs">
+					<form action="{{ url_for('profile') }}" enctype="multipart/form-data" method="POST">
+						<div class="data-input" data-validate = "Username is required">
+							<span>Name</span>
+							<input type="text"  name="name" placeholder="Type your new name">
+						</div>
+						<div class="data-input" data-validate = "Username is required">
+							<span>Username</span>
+							<input type="text" name="username" placeholder="Type your new username" required>
+						</div>
+						<div class="button">
+							<button class="ProfileButton" type="submit">
+									Update
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="chat">
+				<div class="chat">
+					<div class="user-text">
+						<div class="make-call">
+							<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/video.png"/></a>
+							<a href="{{ url_for('call') }}" target="_blank"><img src="/static/images/call.png"/></a>
+							<a href="{{ url_for('sessionmeeting') }}" target="_blank"><img src="/static/images/stream.png"/></a>
+						</div>
+					</div>
+	
+					<div class="user-features">
+						<div class="features">
+							<div class="title">
+								<div class="arrow"><img src="/static/images/arrow.png"/></div>
+								<img src="/static/images/calender.png"/>
+								<h1>Calender</h1>
+							</div>
+							<div class="content">
+								<iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&bgcolor=%239E69AF&showTitle=0&showPrint=0&showDate=0&src=ZjVjZjQ4ZjRjYjJkYjUxMDU0YmJiNDhkNDUzZDIzMDJiNWUyYjA3ODBhNzgyZTAzMjFmMmFiNWQyNGEyMWY5ZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237986CB" style="border-width:0" width="300" height="180" frameborder="0" scrolling="no"></iframe>
+							</div>
+						</div>
+					</div>
+					<div class="user-features">
+						<div class="features">
+							<div class="title">
+								<div class="arrow"><img src="/static/images/arrow.png"/></div>
+								<img src="/static/images/weather.png"/>
+								<h1>Weather</h1>
+							</div>
+							<div class="content">
+								<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+								<div class="elfsight-app-e1f18347-6392-450a-ad9f-bb774c024c34" data-elfsight-app-lazy></div>
+							</div>
+						</div>
+					</div>
+					
+					{% for notes in notes %}
+					<div class="user-features">
+						<div class="features">
+							<div class="title">
+								<div><img src="/static/images/arrow.png"/></div>
+								<img src="/static/images/notes.png"/>
+								<h1>Calender</h1>
+							</div>
+							<div class="content">
+								<p>{{ notes['note'] }}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+		</div>
+		{% endif %}
+	</div>
+</body>
+</html>
